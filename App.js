@@ -1,114 +1,115 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { Component } from 'react';
+import { createAppContainer,createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Home from '../prj_how-are-u/screen/Home.js'
+import Login from '../prj_how-are-u/screen/Login.js'
+import SignUp from '../prj_how-are-u/screen/SignUp.js'
+import CalendarView from './screen/CalendarView.js'
+import VideoList from './screen/VideoList.js'
+import VideoView from './screen/VideoView.js'
+import Mentor from './screen/Mentor.js'
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+const inActiveHome = require('../prj_how-are-u/image/home.png');
+const activeHome = require('../prj_how-are-u/image/activeHome.png')
+const inActiveCalender = require('../prj_how-are-u/image/calendar.png');
+const activeCalendar = require('../prj_how-are-u/image/activeCalendar.png');
+const inActiveSelf = require('../prj_how-are-u/image/self.png');
+const activeSelf = require('../prj_how-are-u/image/activeSelf.png');
+const inActiveMentor = require('../prj_how-are-u/image/mentor.png');
+const activeMentor = require('../prj_how-are-u/image/activeMentor.png');
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const LoginStack = createStackNavigator({
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+  Login: Login,
+  SignUp: SignUp,
+},{
+  headerMode: 'none',
+  navigationOptions:{
+    tabBarVisible: false
+  }
+})
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+const HomeStack = createStackNavigator({
+  Home: Home,
+  VideoList: VideoList,
+  VideoView: VideoView,
+},{
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    cardStyle: { backgroundColor: 'white'}
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+})
 
-export default App;
+const CalendarStack = createStackNavigator({
+  Calendar: CalendarView
+},{
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    cardStyle: { backgroundColor: 'white'}
+  },
+})
+
+const MentorStack = createStackNavigator({
+  Mentor: Mentor
+},{
+  headerMode: 'none',
+  defaultNavigationOptions:{
+    cardStyle: { backgroundColor: 'white'}
+  },
+})
+
+const AppNavigator = createStackNavigator(
+  {
+    Home: Home,
+    Login: Login,
+    SignUp: SignUp,
+  },
+  {
+    initialRouteName: 'Home',
+    headerMode: 'none',
+  }
+);
+
+const BottomTab = createBottomTabNavigator(
+  {
+    "홈": {
+      screen: HomeStack,
+      navigationOptions:{
+        tabBarIcon:({focused}) => 
+          <Image style={{width:25, height:25}} source={ focused ? activeHome : inActiveHome}/>,
+      }
+    },
+    "대학일정": {
+      screen: CalendarStack,
+      navigationOptions:{
+        tabBarIcon:({focused}) => 
+          <Image style={{width:25, height:25}} source={focused ? activeCalendar : inActiveCalender}/>,
+      }
+    },
+    "멘토링": {
+      screen: MentorStack,
+      navigationOptions:{
+        tabBarIcon:({focused}) => 
+          <Image style={{width:25, height:25}} source={focused ? activeMentor : inActiveMentor}/>,
+      }
+    },
+  },
+  {
+    initialRouteName: '홈',
+    tabBarOptions:{
+      activeTintColor: '#5dc1c3'
+    },
+  }
+)
+
+//export default createAppContainer(BottomTab);
+export default createAppContainer(createSwitchNavigator(
+  {
+    Login: LoginStack,
+    BottomTab: BottomTab,
+  },
+  {
+    initialRouteName: 'BottomTab',
+  }
+))
