@@ -20,20 +20,6 @@ export default class Home extends Component {
       {id: 3, title:'건국대학교 미디어학과', image:'../image/univ3.png'},
     ]
   }
-  componentDidMount() {
-    db.collection('posts').get()
-      .then( result => {
-        const firedata = []
-        result.forEach( doc => {
-          firedata.push(doc.data())
-        })
-        this.setState({
-          posts: firedata
-        })
-      }).catch( error => {
-        console.log(error)
-      })
-  }
 
   render(){
     if(isIos){
@@ -68,7 +54,7 @@ export default class Home extends Component {
               this.props.videos.map((video)=>{
                 return (
                     <>
-                      <VideoView {...this.props} video={video}/>
+                      <VideoView key={video.id} {...this.props} video={video}/>
                       <View style={{ marginRight: 30}}/>
                     </>
                   )
@@ -87,7 +73,7 @@ export default class Home extends Component {
           </View>
           <View style={{ marginTop: 15}}/>
           <ScrollView horizontal={true}>
-            {
+            {/* {
               this.state.posts.map( post => {
                 return(
                   <>
@@ -97,7 +83,8 @@ export default class Home extends Component {
 
                 )
               })
-            }
+            } */}
+            <UnivCom {...this.props}/>
           </ScrollView>
         </View>
         {bottom}
@@ -199,7 +186,6 @@ class RecommendSub extends Component{
 
 class UnivCom extends Component {
   render(){
-    console.log(this.props);
     return(
       <View style={{
         borderRadius: 5,
@@ -217,19 +203,80 @@ class UnivCom extends Component {
             },
             elevation: 3
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('Posts',{ title: '취업후기', postId: 'WO1ll4OkGWnY7JzUCnb6'})}>
             <View
               style={{ justifyContent: 'center', alignItems: 'center'}}>
               <Image
                 style={{ width: 80, height: 80, borderRadius: 5 }}
-                source={{ uri: this.props.post.image}}/>
+                source={require('../image/employ.png')}/>
             </View>
             <View style={{ backgroundColor: primary,
               width: 120,
               borderBottomLeftRadius: 5,
               borderBottomRightRadius:5, 
               padding: 10}}>
-              <Text style={{ fontSize: 15, color: 'white', textAlign: 'center'}}>{this.props.post.title}</Text>
+              <Text style={{ fontSize: 15, color: 'white', textAlign: 'center'}}>취업후기</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ marginRight: 15}}/>
+
+        <View
+          style={{
+            shadowOpacity: 0.3,
+            shadowRadius: 3,
+            shadowOffset: {
+                height: 3,
+                width: 3
+            },
+            elevation: 3
+          }}>
+          <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('Posts',{ title: '전공지식', postId: 'WbhhpYtgkmm3zPk53rmA'})}>
+            <View
+              style={{ justifyContent: 'center', alignItems: 'center'}}>
+              <Image
+                style={{ width: 80, height: 80, borderRadius: 5 }}
+                source={require('../image/knowledge.png')}/>
+            </View>
+            <View style={{ backgroundColor: primary,
+              width: 120,
+              borderBottomLeftRadius: 5,
+              borderBottomRightRadius:5, 
+              padding: 10}}>
+              <Text style={{ fontSize: 15, color: 'white', textAlign: 'center'}}>전공지식</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ marginRight: 15}}/>
+
+        <View
+          style={{
+            shadowOpacity: 0.3,
+            shadowRadius: 3,
+            shadowOffset: {
+                height: 3,
+                width: 3
+            },
+            elevation: 3
+          }}>
+          <TouchableOpacity
+            onPress={()=> this.props.navigation.navigate('Posts',{ title: '학교생활', postId: 'xtIWHU7KUXaSzhxN484R'})}>
+            <View
+              style={{ justifyContent: 'center', alignItems: 'center'}}>
+              <Image
+                style={{ width: 80, height: 80, borderRadius: 5 }}
+                source={require('../image/school.png')}/>
+            </View>
+            <View style={{ backgroundColor: primary,
+              width: 120,
+              borderBottomLeftRadius: 5,
+              borderBottomRightRadius:5, 
+              padding: 10}}>
+              <Text style={{ fontSize: 15, color: 'white', textAlign: 'center'}}>학교생활</Text>
             </View>
           </TouchableOpacity>
         </View>

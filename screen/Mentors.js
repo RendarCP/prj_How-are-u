@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import StarRating from 'react-native-star-rating'
+import { Rating, AirbnbRating } from 'react-native-ratings';
 import { YellowBox } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default class Mentor extends Component {
+export default class Mentors extends Component {
   static defaultProps = {
     mentors: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6}] 
   }
@@ -36,6 +37,10 @@ export default class Mentor extends Component {
 }
 
 class MentorList extends Component {
+
+  ratingCompleted(rating) {
+    console.log("Rating is: " + rating)
+  }
   render(){
     return(
       <TouchableOpacity>
@@ -61,13 +66,21 @@ class MentorList extends Component {
                   <Text style={{ fontSize: 10, color: 'gray', textAlign:'center' }}>수시합격</Text>
                 </View>
                 <View style={{ marginRight: 30 }}/>
-                <StarRating
+                {/* <StarRating
                   containerStyle={{ width: 40 }}
                   disabled={true}
                   fullStarColor="orange"
                   maxStars={5}
                   rating={3.5}
                   starSize={20}
+                  /> */}
+                  <Rating
+                    type='star'
+                    ratingColor='orange'
+                    ratingCount={5}
+                    imageSize={20}
+                    style={{ paddingVertical: 10 }}
+                    startingValue={3.5}
                   />
               </View>
 

@@ -8,7 +8,8 @@ import SignUp from '../prj_how-are-u/screen/SignUp.js'
 import CalendarView from './screen/CalendarView.js'
 import VideoList from './screen/VideoList.js'
 import VideoView from './screen/VideoView.js'
-import Mentor from './screen/Mentor.js'
+import Mentors from './screen/Mentors.js'
+import Posts from './screen/Posts.js'
 
 const inActiveHome = require('../prj_how-are-u/image/home.png');
 const activeHome = require('../prj_how-are-u/image/activeHome.png')
@@ -34,6 +35,7 @@ const HomeStack = createStackNavigator({
   Home: Home,
   VideoList: VideoList,
   VideoView: VideoView,
+  Posts: Posts
 },{
   headerMode: 'none',
   defaultNavigationOptions: {
@@ -51,7 +53,7 @@ const CalendarStack = createStackNavigator({
 })
 
 const MentorStack = createStackNavigator({
-  Mentor: Mentor
+  Mentors: Mentors
 },{
   headerMode: 'none',
   defaultNavigationOptions:{

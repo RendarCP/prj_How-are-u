@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, ScrollView } from 'react-native-gesture-handler';
+import { TextInput, ScrollView, FlatList } from 'react-native-gesture-handler';
 
 export default class VideoList extends Component{
   static defaultProps = {
@@ -31,7 +31,7 @@ export default class VideoList extends Component{
           </View>
         </View>
         <ScrollView>
-          {
+          {/* {
             this.props.videos.map((video)=>{
               return (
                   <>
@@ -39,7 +39,12 @@ export default class VideoList extends Component{
                   </>
                 )
               })
-          }
+          } */}
+            <FlatList 
+              data={this.props.videos}
+              renderItem={(video) => <VideoColView video={video}/>}
+              keyExtractor={(item, index) => item.id}
+              />
           <View style={{ marginBottom: 100}} />
         </ScrollView>
       </SafeAreaView>
@@ -49,9 +54,9 @@ export default class VideoList extends Component{
 
 class VideoColView extends Component{
   render(){
-    console.log(this.props)
+    console.log(this.props.video)
     return(
-      <ScrollView>
+      <>
         <View>
           <Image 
             style={{ width: '100%', height: 250  }}
@@ -63,9 +68,9 @@ class VideoColView extends Component{
             bottom: 0,
             backgroundColor: 'white',
             width: '100%',
-            paddingHorizontal: 20
+            paddingHorizontal: 20,
           }}>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', marginBottom: 20, marginTop: 5 }}>
             <Image
               style={{ width: 50, height: 50}}
               source={require('../image/univ2.png')}/>
@@ -74,21 +79,21 @@ class VideoColView extends Component{
                 style={{
                   color: primary,
                   fontSize: 15
-                }}>{this.props.video.title}</Text>
+                }}>{this.props.video.item.title}</Text>
               <Text
                 style={{
                   fontSize: 12,
                   color: 'gray',
                   marginTop: 3
-                }}>{this.props.video.description}</Text>
+                }}>{this.props.video.item.description}</Text>
               <View style={{ flexDirection: 'row', marginTop: 3 }}>
-              <Text style={{ color: 'gray', fontSize: 10}}>{this.props.video.date}</Text>
-                <Text style={{ color: 'gray', fontSize: 10, marginLeft: 5}}>조회수 {this.props.video.views}회</Text>
+              <Text style={{ color: 'gray', fontSize: 10}}>{this.props.video.item.date}</Text>
+                <Text style={{ color: 'gray', fontSize: 10, marginLeft: 5}}>조회수 {this.props.video.itemviews}회</Text>
               </View>
             </View>
           </View>
         </View>
-      </ScrollView>
+      </>
     )
   }
 }

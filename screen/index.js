@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   SafeAreaView,
+  FlatList,
   Platform } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome'

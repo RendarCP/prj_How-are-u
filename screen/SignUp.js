@@ -16,6 +16,10 @@ export default class SignUp extends Component {
     school: '',
     nickName: '',
     newDate: new Date(),
+    type: 'student', // 기본 값 student 신청후 확인후 mentor
+    typeCheck: '', //학생증등 멘토의 실제 확인용
+    rating: 0, // 종료시 평균값으면 반영
+    mentoring: 0 // 멘토링 인원 확인용(레이팅 평균확인용)
   }
   onPressSignUp = () => {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -26,7 +30,12 @@ export default class SignUp extends Component {
           age: this.state.age,
           school: this.state.school,
           phone: this.state.phone,
-          nickName: this.state.nickName
+          nickName: this.state.nickName,
+          newDate: this.state.newDate,
+          type: this.state.type,
+          typeCheck: this.state.typeCheck,
+          rating: this.state.rating,
+          mentoring: this.state.mentoring
         };
         this.props.navigation.navigate('Login');
         db.collection('users').add(userData)
