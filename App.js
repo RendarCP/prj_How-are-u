@@ -9,6 +9,8 @@ import CalendarView from './screen/CalendarView.js'
 import VideoList from './screen/VideoList.js'
 import VideoView from './screen/VideoView.js'
 import Mentors from './screen/Mentors.js'
+import Mentor from './screen/Mentor.js'
+import Chat from './screen/Chat.js'
 import Posts from './screen/Posts.js'
 
 const inActiveHome = require('../prj_how-are-u/image/home.png');
@@ -53,7 +55,9 @@ const CalendarStack = createStackNavigator({
 })
 
 const MentorStack = createStackNavigator({
-  Mentors: Mentors
+  Mentors: Mentors,
+  Mentor: Mentor,
+  Chat: Chat
 },{
   headerMode: 'none',
   defaultNavigationOptions:{
@@ -100,7 +104,10 @@ const BottomTab = createBottomTabNavigator(
   {
     initialRouteName: '홈',
     tabBarOptions:{
-      activeTintColor: '#5dc1c3'
+      activeTintColor: '#5dc1c3',
+      style: {
+        height: 50
+      }
     },
   }
 )
@@ -112,6 +119,6 @@ export default createAppContainer(createSwitchNavigator(
     BottomTab: BottomTab,
   },
   {
-    initialRouteName: 'BottomTab',
+    initialRouteName: 'Login',
   }
 ))

@@ -9,14 +9,14 @@ import moment from 'moment';
 //   weekDaysNames: ['test','test','test'],
 // }
 // LocaleConfig.defaultLocale = 'kr';
-LocaleConfig.locales['fr'] = {
+LocaleConfig.locales['kr'] = {
   monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
   monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
   dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
   dayNamesShort: ['일','월','화','수','목','금','토'],
   today: 'Aujourd\'hui' // 공식 문서에는 today 프로퍼티가 있지만, 타입스크립트를 이용하는 분들에게는 에러가 발생합니다.
 };
-LocaleConfig.defaultLocale = 'fr';
+LocaleConfig.defaultLocale = 'kr';
 
 export default class CalendarView extends Component{
   state = {

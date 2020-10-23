@@ -24,10 +24,14 @@ export default class VideoList extends Component{
               borderColor: 'gray', 
               borderRadius: 5,
               padding: 10,
+              flexDirection: 'row',
               justifyContent: 'space-between' }}>
             <TextInput 
               onChangeText={(text) => this.setState({search: text})}
               value={this.state.search}/>
+            <Image
+              style={{ width: 20, height: 20}}
+              source={require('../image/search.png')}/>
           </View>
         </View>
         <ScrollView>

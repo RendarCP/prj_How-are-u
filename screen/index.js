@@ -1,3 +1,4 @@
+import React, { Component } from 'react'
 import { 
   StyleSheet, 
   Text, 
@@ -12,8 +13,10 @@ import {
   Platform } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Util from './module/Util.js'
 
-
+global.React = React
+global.Component = Component
 global.primary = '#5dc1c3'
 global.StyleSheet = StyleSheet
 global.Text = Text
@@ -25,6 +28,8 @@ global.TouchableOpacity = TouchableOpacity
 global.isAndroid = Platform.OS === 'android'
 global.isIos = Platform.OS === 'ios'
 global.ScrollView = ScrollView
+global.FlatList = FlatList
 global.SafeAreaView = SafeAreaView
 
 global.Icon = Icon
+global.Util = Util

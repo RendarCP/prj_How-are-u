@@ -26,7 +26,7 @@ export default class Mentors extends Component {
           {
             this.props.mentors.map((mentor)=>{
               return(
-                <MentorList key={mentor.id}/>
+                <MentorList nav={this.props.navigation} key={mentor.id}/>
               )
             })
           }
@@ -43,7 +43,8 @@ class MentorList extends Component {
   }
   render(){
     return(
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=> this.props.nav.navigate('Mentor')}>
         <View style={{ flexDirection: 'row', paddingHorizontal: 30 }}>
           <View>
             <Image

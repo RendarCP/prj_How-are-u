@@ -84,7 +84,7 @@ export default class Home extends Component {
                 )
               })
             } */}
-            <UnivCom {...this.props}/>
+            <UnivCom nav={this.props.navigation}/>
           </ScrollView>
         </View>
         {bottom}
@@ -204,7 +204,7 @@ class UnivCom extends Component {
             elevation: 3
           }}>
           <TouchableOpacity
-            onPress={()=> this.props.navigation.navigate('Posts',{ title: '취업후기', postId: 'WO1ll4OkGWnY7JzUCnb6'})}>
+            onPress={()=> this.props.nav.navigate('Posts',{ title: '취업후기', postId: 'WO1ll4OkGWnY7JzUCnb6'})}>
             <View
               style={{ justifyContent: 'center', alignItems: 'center'}}>
               <Image
@@ -234,7 +234,7 @@ class UnivCom extends Component {
             elevation: 3
           }}>
           <TouchableOpacity
-            onPress={()=> this.props.navigation.navigate('Posts',{ title: '전공지식', postId: 'WbhhpYtgkmm3zPk53rmA'})}>
+            onPress={()=> this.props.nav.navigate('Posts',{ title: '전공지식', postId: 'WbhhpYtgkmm3zPk53rmA'})}>
             <View
               style={{ justifyContent: 'center', alignItems: 'center'}}>
               <Image
@@ -264,7 +264,7 @@ class UnivCom extends Component {
             elevation: 3
           }}>
           <TouchableOpacity
-            onPress={()=> this.props.navigation.navigate('Posts',{ title: '학교생활', postId: 'xtIWHU7KUXaSzhxN484R'})}>
+            onPress={()=> this.props.nav.navigate('Posts',{ title: '학교생활', postId: 'xtIWHU7KUXaSzhxN484R'})}>
             <View
               style={{ justifyContent: 'center', alignItems: 'center'}}>
               <Image

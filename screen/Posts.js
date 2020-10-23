@@ -19,7 +19,7 @@ export default class Posts extends Component {
     ]
   }
   render() {
-    console.log(this.props.navigation.state.params)
+    //console.log(this.props.navigation.state.params)
     if(isIos){
       bottom = <View style={{ marginBottom: 50 }}/>
     }
