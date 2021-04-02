@@ -5,7 +5,12 @@ KPU 창업동아리(보배씨) 아이템
 ## Skills
 1. React Native
 2. FireBase (Authentication, storage, DataBase)
-3. React Navigation
+
+## Library
+1. React-native-ratings https://github.com/Monte9/react-native-ratings
+2. React-navigation https://reactnavigation.org/
+3. React-native-video https://github.com/react-native-community/react-native-video
+4. Calendar https://github.com/wix/react-native-calendars
 
 ## ScreenShot
 <div>
